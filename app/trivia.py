@@ -109,7 +109,7 @@ class Quiz:
         self.current_question_index = 0
         self.score = 0
 
-def run_quiz():
+def run_quiz(number_of_questions=2):
     print("Bienvenido al juego de trivia!")
     print("Responde las siguientes preguntas:")
     # Crear cuestionario
