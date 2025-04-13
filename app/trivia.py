@@ -29,13 +29,13 @@ class Question:
         return self.correct_answer == answer
 
 class Quiz:
-    def __init__(self):
+    def __init__(self,questions):
         """
         Inicializa la clase Quiz con una lista de preguntas.
 
         :param questions: Lista de objetos Question.
         """
-        self.questions = []
+        self.questions = questions
         self.current_question_index = 0
         self.score = 0
         self.total_questions = len(self.questions)
@@ -109,34 +109,4 @@ class Quiz:
         self.current_question_index = 0
         self.score = 0
 
-def run_quiz(number_of_questions=2):
-    print("Bienvenido al juego de trivia!")
-    print("Responde las siguientes preguntas:")
-    # Crear cuestionario
-    quiz = Quiz()
-    # Agregar preguntas
-    quiz.add_question(Question("¿Cuál es la capital de Francia?", ["Madrid", "Londres", "París", "Berlín"], 3))
-    quiz.add_question(Question("¿Cuál es la capital de España?", ["Madrid", "Londres", "París", "Berlín"], 1))
 
-    while True:
-        question = quiz.get_next_question()
-        if question: 
-            print(f"Pregunta: {question.description}")
-            for i, option in enumerate(question.options):
-                print(f"{i + 1}. {option}")
-            answer = int(input("Selecciona una opción (1-4): "))
-            try:
-                if quiz.answer_question(answer):
-                    print("¡Correcto!")
-                else:
-                    print("Incorrecto.")
-            except ValueError as e:
-                print(e)
-            
-            print(f"Tu puntaje actual es: {quiz.get_score()}/{quiz.current_question_index}")
-        else:
-            print("No hay más preguntas.")
-            break
-    print(f"Tu puntaje final es: {quiz.get_score()}/{quiz.total_questions}")
-
-#run_quiz()
