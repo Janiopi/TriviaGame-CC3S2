@@ -16,7 +16,7 @@ def get_questions_by_difficulty(difficulty):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM trivia.questions WHERE difficulty = %s", (difficulty,))
         rows = cursor.fetchall()
-        print(f"Preguntas obtenidas: {len(rows)}")
+        # print(f"Preguntas obtenidas: {len(rows)}")
 
         # Convertimos las filas en objetos de tipo Question
         questions = []

@@ -27,7 +27,7 @@ def create_connection_pool():
             user=user,
             password=password
         )
-        print("Pool de conexiones creado exitosamente.")
+        # print("Pool de conexiones creado exitosamente.")
     except Exception as e:
         print(f"Error al crear el pool de conexiones: {e}")
 

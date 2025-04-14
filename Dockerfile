@@ -16,5 +16,8 @@ COPY . .
 # Expone el puerto en el que FastAPI correrá
 EXPOSE 8000
 
+# Establece la variable de entorno PYTHONPATH para que Python reconozca el directorio /app como parte del path
+ENV PYTHONPATH=/app
+
 # Comando para ejecutar la aplicación FastAPI con Uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
