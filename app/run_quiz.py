@@ -21,11 +21,17 @@ def run_quiz(number_of_questions=10):
     while True:
         question = quiz.get_next_question()
         if question:
-            # Cambié el acceso a las claves del diccionario
-            print(f"Pregunta: {question['question_text']}")
-            for i, option in enumerate(question['options']):
-                print(f"{i + 1}. {option}")
-            answer = int(input("Selecciona una opción (1-4): "))
+            print(f"Pregunta: {question.get_question_text()}")
+            print("Opciones:")
+            # Mostrar opciones de respuesta
+            for i, option in enumerate(question.get_options(), start=1):
+                print(f"{i}. {option}")
+            print("5. Mostrar puntaje")
+            print(f"Tu puntaje actual es: {quiz.get_score()}/{quiz.current_question_index}")
+            answer = int(input("Selecciona una opción (1-5): "))
+            # Validar la respuesta
+            
+            
             try:
                 if quiz.answer_question(answer):
                     print("¡Correcto!")
@@ -33,9 +39,9 @@ def run_quiz(number_of_questions=10):
                     print("Incorrecto.")
             except ValueError as e:
                 print(e)
-            
-            print(f"Tu puntaje actual es: {quiz.get_score()}/{quiz.current_question_index}")
         else:
             print("No hay más preguntas.")
+            print("Juego terminado.")
             break
+
     print(f"Tu puntaje final es: {quiz.get_score()}/{quiz.get_total_questions()}")

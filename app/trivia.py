@@ -1,5 +1,7 @@
+from typing import List
+
 class Question:
-    def __init__(self, description, options, correct_answer):
+    def __init__(self, description: str, options: List[str], correct_answer: int):
         """
         Inicializa la clase Question con los atributos necesarios.
 
@@ -11,7 +13,7 @@ class Question:
         self.options = options
         self.correct_answer = correct_answer
 
-    def is_correct(self, answer):
+    def is_correct(self, answer: int) -> bool:
         """
         Verifica si la respuesta proporcionada es correcta.
 
@@ -19,17 +21,40 @@ class Question:
         :raises ValueError: Si la respuesta no es un número entero o está fuera del rango de opciones.
         :return: True si la respuesta es correcta, False si es incorrecta.
         """
-                
         if not isinstance(answer, int):
             raise ValueError("La respuesta debe ser un número entero.")
 
         if answer < 1 or answer > len(self.options):
             raise ValueError("La respuesta debe estar entre el número de opciones disponibles.")
-                
+
         return self.correct_answer == answer
 
+    def get_question_text(self) -> str:
+        """
+        Obtiene el texto de la pregunta.
+
+        :return: Texto de la pregunta.
+        """
+        return self.description
+
+    def get_options(self) -> List[str]:
+        """
+        Obtiene las opciones de respuesta.
+
+        :return: Lista de opciones.
+        """
+        return self.options
+
+    def get_correct_answer(self) -> int:
+        """
+        Obtiene la respuesta correcta.
+
+        :return: Número de la opción correcta (1, 2, 3, 4).
+        """
+        return self.correct_answer
+
 class Quiz:
-    def __init__(self,questions):
+    def __init__(self,questions: list[Question]):
         """
         Inicializa la clase Quiz con una lista de preguntas.
 
@@ -40,7 +65,7 @@ class Quiz:
         self.score = 0
         self.total_questions = len(self.questions)
     
-    def add_question(self, question):
+    def add_question(self, question: Question):
         """
         Agrega una pregunta a la lista de preguntas del cuestionario.
 
@@ -49,7 +74,7 @@ class Quiz:
         self.questions.append(question)
         self.total_questions += 1 
     
-    def get_next_question(self):
+    def get_next_question(self) -> Question:
         """
         Obtiene la siguiente pregunta del cuestionario.
 
@@ -62,7 +87,7 @@ class Quiz:
         else:
             return None
 
-    def answer_question(self, answer):
+    def answer_question(self, answer: str):
         """
         Responde a la pregunta actual y actualiza el puntaje.
 
@@ -77,7 +102,7 @@ class Quiz:
         else:
             return False
 
-    def delete_question(self, question):
+    def delete_question(self, question: Question):
         """
         Elimina una pregunta del cuestionario.
 
@@ -92,7 +117,7 @@ class Quiz:
             self.current_question_index = 0
             self.score = 0
 
-    def get_score(self):
+    def get_score(self) -> int:
         """
         Calcula el puntaje del jugador.
 
@@ -108,5 +133,13 @@ class Quiz:
         """
         self.current_question_index = 0
         self.score = 0
+
+    def get_total_questions(self) -> int:
+        """
+        Obtiene el número total de preguntas en el cuestionario.
+
+        :return: Número total de preguntas.
+        """
+        return self.total_questions 
 
 

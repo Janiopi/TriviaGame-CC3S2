@@ -1,6 +1,5 @@
-
+from app.trivia import Question  
 from app.db.db_connection import get_connection_from_pool, release_connection_to_pool
-
 
 def get_all_questions():
     """
@@ -13,20 +12,16 @@ def get_all_questions():
 
     try:
         cursor = conn.cursor()
-        cursor.execute("SELECT question_id, question_text, option_1, option_2, option_3, option_4, correct_answer FROM trivia.questions")
+        cursor.execute("SELECT question_text, option_1, option_2, option_3, option_4, correct_answer FROM trivia.questions")
         rows = cursor.fetchall()
-        
-        # Convertir las filas en objetos de tipo Question
+
+        # Convertimos las filas en objetos de tipo Question
         questions = []
         for row in rows:
-            question_id, question_text, option_1, option_2, option_3, option_4, correct_answer = row
-            options = [option_1, option_2, option_3, option_4]
-            questions.append({
-                "id": question_id,
-                "question_text": question_text,
-                "options": options,
-                "correct_answer": correct_answer
-            })
+            question_text = row[0]  # El texto de la pregunta (columna 0)
+            options = row[1:5]  # Las opciones (columnas 1 a 4)
+            correct_answer = row[5]  # La respuesta correcta (columna 5)
+            questions.append(Question(question_text, options, correct_answer))
         
         cursor.close()
         return questions
@@ -35,5 +30,3 @@ def get_all_questions():
         return []
     finally:
         release_connection_to_pool(conn)
-
-
