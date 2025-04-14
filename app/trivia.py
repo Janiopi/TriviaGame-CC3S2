@@ -1,7 +1,7 @@
 from typing import List
 
 class Question:
-    def __init__(self, description: str, options: List[str], correct_answer: int):
+    def __init__(self, description: str, options: List[str], correct_answer: int, difficulty: str = "easy"):
         """
         Inicializa la clase Question con los atributos necesarios.
 
@@ -12,6 +12,7 @@ class Question:
         self.description = description
         self.options = options
         self.correct_answer = correct_answer
+        self.difficulty = difficulty
 
     def is_correct(self, answer: int) -> bool:
         """

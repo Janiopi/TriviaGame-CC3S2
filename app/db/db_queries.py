@@ -1,9 +1,11 @@
 from app.trivia import Question  
 from app.db.db_connection import get_connection_from_pool, release_connection_to_pool
 
-def get_all_questions():
+def get_questions_by_difficulty(difficulty):
     """
-    Obtiene todas las preguntas de la base de datos.
+    Obtiene las preguntas de la base de datos filtradas por dificultad.
+    :param difficulty: La dificultad de las preguntas que se desean obtener.
+    :return: Lista de preguntas.
     """
     conn = get_connection_from_pool()
     if not conn:
@@ -12,17 +14,19 @@ def get_all_questions():
 
     try:
         cursor = conn.cursor()
-        cursor.execute("SELECT question_text, option_1, option_2, option_3, option_4, correct_answer FROM trivia.questions")
+        cursor.execute("SELECT * FROM trivia.questions WHERE difficulty = %s", (difficulty,))
         rows = cursor.fetchall()
+        print(f"Preguntas obtenidas: {len(rows)}")
 
         # Convertimos las filas en objetos de tipo Question
         questions = []
         for row in rows:
-            question_text = row[0]  # El texto de la pregunta (columna 0)
-            options = row[1:5]  # Las opciones (columnas 1 a 4)
-            correct_answer = row[5]  # La respuesta correcta (columna 5)
-            questions.append(Question(question_text, options, correct_answer))
-        
+            question_text = row[1]
+            options = row[2:6]
+            correct_answer = row[6]
+            difficulty = row[7]
+            questions.append(Question(question_text, options, correct_answer, difficulty))
+
         cursor.close()
         return questions
     except Exception as e:
