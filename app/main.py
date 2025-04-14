@@ -1,11 +1,8 @@
 from fastapi import FastAPI
-from app.db.db_connection import create_connection_pool
-from app.db.db_queries import get_questions_by_difficulty
+from app.db.db_connection import get_questions_by_difficulty
+
 
 app = FastAPI()
-
-#Inicializando el pool de conexiones
-create_connection_pool()
 
 
 @app.get("/")
@@ -20,7 +17,7 @@ def get_questions(difficulty: str):
     :param difficulty: Dificultad de las preguntas (fácil, media, difícil).
     :return: Lista de preguntas en formato JSON.
     """
-    # Aquí deberías llamar a tu función que obtiene las preguntas de la base de datos
+    # Obteniendo las preguntas por dificultad en la base de datos
     questions = get_questions_by_difficulty(difficulty)
     
     if not questions:

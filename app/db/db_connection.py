@@ -1,47 +1,61 @@
 import psycopg2
-from psycopg2 import pool
 import os
 from dotenv import load_dotenv
+from app.trivia import Question
 
 # Cargar las variables de entorno desde el archivo .env
 load_dotenv()
 
-# Crear el pool de conexiones al iniciar la aplicación
-connection_pool = None
-
-def create_connection_pool():
-    """Crea el pool de conexiones solo una vez."""
-    global connection_pool
+# Conexión a la base de datos
+def get_connection():
+    """
+    Establece la conexión con la base de datos PostgreSQL.
+    """
     try:
-        # Configurar las credenciales de la BD (usando variables de entorno)
-        host = os.getenv("DB_HOST", "localhost")
-        database = os.getenv("DB_NAME", "trivia_db")
-        user = os.getenv("DB_USER", "trivia_user")
-        password = os.getenv("DB_PASSWORD", "trivia_pass")
-
-        connection_pool = psycopg2.pool.SimpleConnectionPool(
-            1,  # Mínimo número de conexiones en el pool
-            10, # Máximo número de conexiones en el pool
-            host=host,
-            database=database,
-            user=user,
-            password=password
+        return psycopg2.connect(
+            dbname=os.getenv("DB_NAME", "trivia_db"),
+            user=os.getenv("DB_USER", "trivia_user"),
+            password=os.getenv("DB_PASSWORD", "trivia_pass"),
+            host=os.getenv("DB_HOST", "localhost"),
+            port=os.getenv("DB_PORT", "5432")
         )
-        # print("Pool de conexiones creado exitosamente.")
     except Exception as e:
-        print(f"Error al crear el pool de conexiones: {e}")
-
-
-def get_connection_from_pool():
-    """Obtiene una conexión del pool, si está disponible."""
-    if connection_pool:
-        return connection_pool.getconn()
-    else:
-        print("Error: El pool de conexiones no está inicializado.")
+        print(f"Error al conectar a la base de datos: {e}")
         return None
 
+def get_questions_by_difficulty(difficulty: str):
+    """
+    Obtiene las preguntas de la base de datos filtradas por dificultad.
+    :param difficulty: La dificultad de las preguntas a obtener.
+    :return: Lista de objetos de tipo Question.
+    """
+    conn = get_connection()
+    if not conn:
+        print("Error: No se pudo obtener la conexión a la base de datos.")
+        return []
 
-def release_connection_to_pool(conn):
-    """Libera una conexión al pool."""
-    if connection_pool and conn:
-        connection_pool.putconn(conn)
+    questions = []
+    try:
+        with conn.cursor() as cursor:
+            # Ejecutar la consulta
+            cursor.execute(
+                "SELECT question_text, option_1, option_2, option_3, option_4, correct_answer, difficulty "
+                "FROM trivia.questions WHERE difficulty = %s", 
+                (difficulty,)
+            )
+            rows = cursor.fetchall()
+
+            # Convertir las filas en objetos de tipo Question
+            for row in rows:
+                question_text = row[0]
+                options = row[1:5]
+                correct_answer = row[5]
+                difficulty = row[6]
+                questions.append(Question(question_text, options, correct_answer, difficulty))
+
+    except Exception as e:
+        print(f"Error al ejecutar la consulta: {e}")
+    finally:
+        conn.close()  # Asegurarse de cerrar la conexión
+
+    return questions

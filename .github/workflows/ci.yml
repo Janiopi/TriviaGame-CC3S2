@@ -1,0 +1,68 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:15
+        container_name: trivia_game_db
+        ports:
+          - 5434:5432
+        environment:
+          POSTGRES_DB: trivia_db
+          POSTGRES_USER: trivia_user
+          POSTGRES_PASSWORD: trivia_pass
+        options: --health-cmd="pg_isready -U trivia_user -d trivia_db" --health-interval=5s --health-timeout=5s --health-retries=5
+
+    steps:
+      # 1. Checkout del código desde GitHub
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # 2. Configuración de Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      # 3. Instalar dependencias
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # 4. Esperar que la base de datos esté lista
+      - name: Wait for DB to be ready
+        run: |
+          until pg_isready -h localhost -p 5434 -U trivia_user; do
+            echo "Waiting for database to be ready..."
+            sleep 2
+          done
+
+      # 5. Crear base de datos y agregar datos iniciales
+      - name: Initialize database
+        run: |
+          docker exec trivia_game_db psql -U trivia_user -d trivia_db -f /app/db/init.sql
+
+      # 6. Ejecutar pruebas unitarias
+      - name: Run tests
+        run: |
+          export PYTHONPATH=$(pwd)/app:$PYTHONPATH  # Aseguramos que PYTHONPATH apunte al directorio 'app'
+          pytest
+
+      # 7. SonarCloud scan
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token de SonarCloud
+        with:
+          args: |
+            -Dsonar.projectKey=trivia-game-python
+            -Dsonar.sources=.
