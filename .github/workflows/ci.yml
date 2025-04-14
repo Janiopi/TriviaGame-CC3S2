@@ -1,0 +1,41 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout del código desde GitHub
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # 2. Configuración de Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      # 3. Instalar dependencias
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # 4. Ejecutar pruebas unitarias
+      - name: Run tests
+        run: |
+          pytest
+
+      # 5. SonarCloud scan
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token de SonarCloud
+        with:
+          args: |
+            -Dsonar.projectKey=trivia-game-python
+            -Dsonar.sources=.
