@@ -17,52 +17,49 @@ jobs:
         ports:
           - 5434:5432
         environment:
-          POSTGRES_DB: trivia_db
-          POSTGRES_USER: trivia_user
-          POSTGRES_PASSWORD: trivia_pass
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        volumes:
+          - ./app/db/init.sql:/docker-entrypoint-initdb.d/init.sql
         options: --health-cmd="pg_isready -U trivia_user -d trivia_db" --health-interval=5s --health-timeout=5s --health-retries=5
 
     steps:
-      # 1. Checkout del código desde GitHub
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 2. Configuración de Python
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.11'
 
-      # 3. Instalar dependencias
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      # 4. Esperar que la base de datos esté lista
-      - name: Wait for DB to be ready
+      - name: Wait for DB to be healthy
         run: |
-          until pg_isready -h localhost -p 5434 -U trivia_user; do
-            echo "Waiting for database to be ready..."
+          until [ "$(docker inspect -f '{{.State.Health.Status}}' trivia_game_db)" == "healthy" ]; do
+            echo "Waiting for database to be healthy..."
             sleep 2
           done
 
-      # 5. Crear base de datos y agregar datos iniciales
-      - name: Initialize database
+      - name: Run tests with coverage
         run: |
-          docker exec trivia_game_db psql -U trivia_user -d trivia_db -f /app/db/init.sql
+          export PYTHONPATH=$(pwd)/app:$PYTHONPATH
+          pytest --cov=app --cov-report=xml
 
-      # 6. Ejecutar pruebas unitarias
-      - name: Run tests
-        run: |
-          export PYTHONPATH=$(pwd)/app:$PYTHONPATH  # Aseguramos que PYTHONPATH apunte al directorio 'app'
-          pytest
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
-      # 7. SonarCloud scan
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v1
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token de SonarCloud
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: |
-            -Dsonar.projectKey=trivia-game-python
+            -Dsonar.projectKey=${{ github.repository }}
             -Dsonar.sources=.
+            -Dsonar.branch.name=${{ github.ref_name }}
