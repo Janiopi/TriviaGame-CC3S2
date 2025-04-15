@@ -31,6 +31,10 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/app" >> $GITHUB_ENV
 
+        # Verify PYTHONPATH
+      - name: Verify PYTHONPATH
+        run: echo $PYTHONPATH # Confirm that PYTHONPATH is correctly set
+
       # Run unit tests
       - name: Run unit tests
         run: |
