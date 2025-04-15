@@ -30,12 +30,12 @@ jobs:
       # Run unit tests
       - name: Run unit tests
         run: |
-          pytest app/tests/unit
+          pytest app/test/unit
 
       # Run integration tests
       - name: Run integration tests
         run: |
-          pytest app/tests/integration
+          pytest app/test/integration
 
       # Run static analysis (SonarCloud)
       - name: Run SonarCloud Analysis
