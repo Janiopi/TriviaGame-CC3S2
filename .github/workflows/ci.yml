@@ -3,10 +3,13 @@ name: CI/CD Workflow
 on:
   push:
     branches:
-      - [main, develop, feature/dia7]
+      - main
+      - develop
+      - feature/dia7]
   pull_request:
     branches:
-      - [main, develop]
+      - main
+      - develop
 
 jobs:
   build:
