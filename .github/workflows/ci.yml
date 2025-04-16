@@ -46,8 +46,8 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@v5.0.0
         with:
           args: >
-            -Dsonar.organization=your-org
-            -Dsonar.projectKey=your-project-key
-            -Dsonar.projectName=your-project-name
+            -Dsonar.organization=janiopi
+            -Dsonar.projectKey=Janiopi_TriviaGame-CC3S2
+            -Dsonar.projectName=TriviaGame-CC3S2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
