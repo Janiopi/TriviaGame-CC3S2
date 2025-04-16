@@ -31,8 +31,7 @@ jobs:
 
       # Set PYTHONPATH as environment variable for the job
       - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)/app" >> $GITHUB_ENV
-
+        run: echo "PYTHONPATH=$(pwd)/app:$PYTHONPATH" >> $GITHUB_ENV
       # Run unit tests
       - name: Run unit tests
         run: |
