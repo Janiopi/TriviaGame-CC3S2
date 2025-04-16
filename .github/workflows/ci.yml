@@ -66,10 +66,3 @@ jobs:
       - name: Run Security Scan with Bandit
         run: |
           bandit -r app --format html --output bandit-report.html
-
-      # Upload Bandit report as an artifact
-      - name: Upload Bandit report
-        uses: actions/upload-artifact@v2
-        with:
-          name: bandit-report
-          path: bandit-report.html
