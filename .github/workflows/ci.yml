@@ -68,8 +68,8 @@ jobs:
           bandit -r app --format html --output bandit-report.html
 
       # Upload Bandit report as an artifact (Optional)
-      - name: Upload Bandit report
-        uses: actions/upload-artifact@v3
-        with:
-          name: bandit-report
-          path: bandit-report.html
+      #- name: Upload Bandit report
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: bandit-report
+      #    path: bandit-report.html
