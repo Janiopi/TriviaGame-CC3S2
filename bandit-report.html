@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+    Bandit Report
+</title>
+
+<style>
+
+html * {
+    font-family: "Arial", sans-serif;
+}
+
+pre {
+    font-family: "Monaco", monospace;
+}
+
+.bordered-box {
+    border: 1px solid black;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1em;
+}
+
+.metrics-box {
+    font-size: 1.1em;
+    line-height: 130%;
+}
+
+.metrics-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: .25em;
+}
+
+.issue-description {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.candidate-issues {
+    margin-left: 2em;
+    border-left: solid 1px; LightGray;
+    padding-left: 5%;
+    margin-top: .2em;
+    margin-bottom: .2em;
+}
+
+.issue-block {
+    border: 1px solid LightGray;
+    padding-left: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+}
+
+.issue-sev-high {
+    background-color: Pink;
+}
+
+.issue-sev-medium {
+    background-color: NavajoWhite;
+}
+
+.issue-sev-low {
+    background-color: LightCyan;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="metrics">
+    <div class="metrics-box bordered-box">
+        <div class="metrics-title">
+            Metrics:<br>
+        </div>
+        Total lines of code: <span id="loc">387</span><br>
+        Total lines skipped (#nosec): <span id="nosec">0</span>
+    </div>
+</div>
+
+
+
+
+<br>
+<div id="results">
+    
+<div id="issue-0">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>26<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+25	    response = client.get(&quot;/questions/fácil&quot;)
+26	    assert response.status_code == 200
+27	    data = response.json()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-1">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>28<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+27	    data = response.json()
+28	    assert &quot;questions&quot; in data
+29	    assert len(data[&quot;questions&quot;]) &gt; 0
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-2">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>29<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+28	    assert &quot;questions&quot; in data
+29	    assert len(data[&quot;questions&quot;]) &gt; 0
+30	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-3">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>33<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+32	    response = client.get(&quot;/questions/media&quot;)
+33	    assert response.status_code == 200
+34	    data = response.json()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-4">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>35<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+34	    data = response.json()
+35	    assert &quot;questions&quot; in data
+36	    assert len(data[&quot;questions&quot;]) &gt; 0
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-5">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>36<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+35	    assert &quot;questions&quot; in data
+36	    assert len(data[&quot;questions&quot;]) &gt; 0
+37	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-6">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>40<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+39	    response = client.get(&quot;/questions/difícil&quot;)
+40	    assert response.status_code == 200
+41	    data = response.json()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-7">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>42<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+41	    data = response.json()
+42	    assert &quot;questions&quot; in data
+43	    assert len(data[&quot;questions&quot;]) &gt; 0
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-8">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>43<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+42	    assert &quot;questions&quot; in data
+43	    assert len(data[&quot;questions&quot;]) &gt; 0
+44	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-9">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>50<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+49	    response = client.get(&quot;/&quot;)
+50	    assert response.status_code == 200
+51	    data = response.json()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-10">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>52<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+51	    data = response.json()
+52	    assert &quot;message&quot; in data
+53	    assert data[&quot;message&quot;] == &quot;Bienvenido a la API de Trivia!&quot;
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-11">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/integration/test_api.py" target="_blank">app/test/integration/test_api.py</a><br>
+    <b>Line number: </b>53<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+52	    assert &quot;message&quot; in data
+53	    assert data[&quot;message&quot;] == &quot;Bienvenido a la API de Trivia!&quot;
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-12">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Question.py" target="_blank">app/test/unit/test_Question.py</a><br>
+    <b>Line number: </b>14<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+13	    # Comprobamos que la respuesta correcta es la opción 3 (París)
+14	    assert question.is_correct(3) == True
+15	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-13">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Question.py" target="_blank">app/test/unit/test_Question.py</a><br>
+    <b>Line number: </b>25<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+24	    # Comprobamos que la respuesta incorrecta no es correcta
+25	    assert question.is_correct(1) == False
+26	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-14">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>13<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+12	    
+13	    assert quiz.answer_question(3) == True  # Respuesta correcta
+14	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-15">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>14<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+13	    assert quiz.answer_question(3) == True  # Respuesta correcta
+14	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+15	    assert quiz.answer_question(1) == False  # Respuesta incorrecta
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-16">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>15<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+14	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+15	    assert quiz.answer_question(1) == False  # Respuesta incorrecta
+16	    assert quiz.get_score() == 1  # Puntaje sigue siendo 1
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-17">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>16<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+15	    assert quiz.answer_question(1) == False  # Respuesta incorrecta
+16	    assert quiz.get_score() == 1  # Puntaje sigue siendo 1
+17	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-18">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>27<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+26	    quiz.answer_question(3)  # Respuesta correcta
+27	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+28	    quiz.reset_quiz()  # Reiniciamos el cuestionario
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-19">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>29<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+28	    quiz.reset_quiz()  # Reiniciamos el cuestionario
+29	    assert quiz.get_score() == 0  # Puntaje debe ser 0 después del reinicio
+30	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-20">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>40<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+39	    quiz.answer_question(3)  # Respuesta correcta
+40	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+41	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-21">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>50<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+49	    quiz = Quiz(questions=[question1])
+50	    assert quiz.answer_question(3) == True  # Respuesta correcta
+51	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-22">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>51<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+50	    assert quiz.answer_question(3) == True  # Respuesta correcta
+51	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+52	    assert quiz.answer_question(1) == False  # Respuesta incorrecta
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-23">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>52<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+51	    assert quiz.get_score() == 1  # Puntaje debe ser 1
+52	    assert quiz.answer_question(1) == False  # Respuesta incorrecta
+53	    assert quiz.get_score() == 1  # Puntaje sigue siendo 1
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-24">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>53<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+52	    assert quiz.answer_question(1) == False  # Respuesta incorrecta
+53	    assert quiz.get_score() == 1  # Puntaje sigue siendo 1
+54	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-25">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>63<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+62	    quiz = Quiz(questions=[question1, question2])
+63	    assert quiz.get_next_question() == question1  # Debe devolver la primera pregunta
+64	    assert quiz.get_next_question() == question2  # Debe devolver la segunda pregunta
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-26">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>64<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+63	    assert quiz.get_next_question() == question1  # Debe devolver la primera pregunta
+64	    assert quiz.get_next_question() == question2  # Debe devolver la segunda pregunta
+65	    assert quiz.get_next_question() == None  # No hay más preguntas, debe devolver None
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-27">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>65<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+64	    assert quiz.get_next_question() == question2  # Debe devolver la segunda pregunta
+65	    assert quiz.get_next_question() == None  # No hay más preguntas, debe devolver None
+66	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-28">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>77<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+76	    quiz.delete_question(question1)  # Eliminamos la primera pregunta
+77	    assert quiz.get_next_question() == question2  # Debe devolver la segunda pregunta
+78	    assert quiz.get_next_question() == None  # No hay más preguntas, debe devolver None
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-29">
+<div class="issue-block issue-sev-low">
+    <b>assert_used: </b> Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.<br>
+    <b>Test ID:</b> B101<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="app/test/unit/test_Quiz.py" target="_blank">app/test/unit/test_Quiz.py</a><br>
+    <b>Line number: </b>78<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html" target="_blank">https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html</a><br>
+
+<div class="code">
+<pre>
+77	    assert quiz.get_next_question() == question2  # Debe devolver la segunda pregunta
+78	    assert quiz.get_next_question() == None  # No hay más preguntas, debe devolver None
+79	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
