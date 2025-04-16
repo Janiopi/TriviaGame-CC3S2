@@ -3,10 +3,10 @@ name: CI/CD Workflow
 on:
   push:
     branches:
-      - develop
+      - [main, develop]
   pull_request:
     branches:
-      - develop
+      - [main, develop]
 
 jobs:
   build:
@@ -29,18 +29,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Install Bandit for security scanning
+      - name: Install Bandit
+        run: |
+          pip install bandit
+
       # Set PYTHONPATH as environment variable for the job
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/app:$PYTHONPATH" >> $GITHUB_ENV
+
       # Run unit tests
       - name: Run unit tests
         run: |
           pytest app/test/unit
 
-      # Run integration tests
-      #      - name: Run integration tests
-      #        run: |
-      #          pytest app/test/integration
       # Run SonarCloud Analysis
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@v5.0.0
@@ -51,3 +53,15 @@ jobs:
             -Dsonar.projectName=TriviaGame-CC3S2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # Run Security Scan with Bandit
+      - name: Run Security Scan with Bandit
+        run: |
+          bandit -r app --format html --output bandit-report.html
+
+      # Upload Bandit report as an artifact (Optional)
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v2
+        with:
+          name: bandit-report
+          path: bandit-report.html
