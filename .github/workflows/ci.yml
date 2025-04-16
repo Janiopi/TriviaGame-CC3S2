@@ -2,9 +2,11 @@ name: CI/CD Workflow
 
 on:
   push:
-    branches: [develop, main]
+    branches:
+      - develop
   pull_request:
-    branches: [develop, main]
+    branches:
+      - develop
 
 jobs:
   build:
@@ -27,23 +29,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-        # Set PYTHONPATH so that the app module can be found
+      # Set PYTHONPATH as environment variable for the job
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/app" >> $GITHUB_ENV
-
-        # Verify PYTHONPATH
-      - name: Verify PYTHONPATH
-        run: echo $PYTHONPATH # Confirm that PYTHONPATH is correctly set
 
       # Run unit tests
       - name: Run unit tests
         run: |
-          PYTHONPATH=$(pwd)/app pytest app/test/unit
+          pytest app/test/unit
 
       # Run integration tests
       - name: Run integration tests
         run: |
-          PYTHONPATH=$(pwd)/app pytest app/test/integration
+          pytest app/test/integration
 
       # Run static analysis (SonarCloud)
       - name: Run SonarCloud Analysis
