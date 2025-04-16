@@ -43,6 +43,11 @@ jobs:
         run: |
           pytest app/test/unit
 
+        # Run integration tests
+      #      - name: Run integration tests
+      #        run: |
+      #          pytest app/test/integration
+
       # Run SonarCloud Analysis
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@v5.0.0
