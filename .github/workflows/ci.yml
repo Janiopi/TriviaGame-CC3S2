@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - develop
-      - feature/dia7]
+      - feature/dia7
   pull_request:
     branches:
       - main
