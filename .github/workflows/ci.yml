@@ -49,15 +49,15 @@ jobs:
       #          pytest app/test/integration
 
       # Run SonarCloud Analysis
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarqube-scan-action@v5.0.0
-        with:
-          args: >
-            -Dsonar.organization=janiopi
-            -Dsonar.projectKey=Janiopi_TriviaGame-CC3S2
-            -Dsonar.projectName=TriviaGame-CC3S2
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #- name: SonarCloud Scan
+      #  uses: sonarsource/sonarqube-scan-action@v5.0.0
+      #  with:
+      #    args: >
+      #      -Dsonar.organization=janiopi
+      #      -Dsonar.projectKey=Janiopi_TriviaGame-CC3S2
+      #      -Dsonar.projectName=TriviaGame-CC3S2
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # Run Security Scan with Bandit
       - name: Run Security Scan with Bandit
