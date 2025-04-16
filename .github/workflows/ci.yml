@@ -69,7 +69,7 @@ jobs:
 
       # Upload Bandit report as an artifact (Optional)
       - name: Upload Bandit report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: bandit-report
           path: bandit-report.html
