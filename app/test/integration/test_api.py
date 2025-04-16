@@ -19,7 +19,7 @@ mock_questions = [
 
 def test_get_questions_by_difficulty(mock_get_questions_by_difficulty):
     """
-    Testea el endpoint /questions/{difficulty} para obtener preguntas de trivia.
+    #Testea el endpoint /questions/{difficulty} para obtener preguntas de trivia.
     """
     # Test para dificultad fácil
     response = client.get("/questions/fácil")
