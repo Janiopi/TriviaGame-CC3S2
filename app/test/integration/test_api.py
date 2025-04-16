@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from unittest import mock
 
 # Inicializa el cliente de pruebas
 client = TestClient(app)
@@ -14,9 +15,9 @@ mock_questions = [
     {"question_id": 6, "question_text": "¿En qué año comenzó la Segunda Guerra Mundial?", "option_1": "1935", "option_2": "1939", "option_3": "1941", "option_4": "1945", "correct_answer": 2, "difficulty": "difícil"}
 ]
 
-@mock.patch('app.db.db_queries.get_questions_by_difficulty', return_value=mock_questions)
-@mock.patch('app.db.db_connection.get_connection_from_pool', return_value=mock.MagicMock())  # Mock de la conexión
-def test_get_questions_by_difficulty(mock_get_questions_by_difficulty,mock_get_connection_from_pool):
+@mock.patch('app.db.db_connection.get_questions_by_difficulty', return_value=mock_questions)
+
+def test_get_questions_by_difficulty(mock_get_questions_by_difficulty):
     """
     Testea el endpoint /questions/{difficulty} para obtener preguntas de trivia.
     """
