@@ -3,7 +3,6 @@ name: CI/CD Workflow
 on:
   push:
     branches:
-
       - main
       - develop
       - feature/dia7
@@ -53,7 +52,6 @@ jobs:
       #          pytest app/test/integration
 
       # Run SonarCloud Analysis
-<<<<<<< HEAD
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@v5.0.0
         with:
@@ -63,29 +61,8 @@ jobs:
             -Dsonar.projectName=TriviaGame-CC3S2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-=======
-      #- name: SonarCloud Scan
-      #  uses: sonarsource/sonarqube-scan-action@v5.0.0
-      #  with:
-      #    args: >
-      #      -Dsonar.organization=janiopi
-      #      -Dsonar.projectKey=Janiopi_TriviaGame-CC3S2
-      #      -Dsonar.projectName=TriviaGame-CC3S2
-      #  env:
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
->>>>>>> feature/dia7
 
       # Run Security Scan with Bandit
       - name: Run Security Scan with Bandit
         run: |
           bandit -r app --format html --output bandit-report.html
-<<<<<<< HEAD
-
-      # Upload Bandit report as an artifact (Optional)
-      - name: Upload Bandit report
-        uses: actions/upload-artifact@v2
-        with:
-          name: bandit-report
-          path: bandit-report.html
-=======
->>>>>>> feature/dia7
