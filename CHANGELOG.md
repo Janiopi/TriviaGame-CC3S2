@@ -23,8 +23,20 @@
 
 - Sistema de puntuación, manejo de rondas y finalización del juego en app/trivia.py
 - Pruebas unitarias para clase Quiz y Question en app/test/test_Question.py y app/test/test_Quiz.py
+  **Tag:** `v1.0-day4`
 
 ## Día 5 -
 
 - Implementación de niveles de dificultad app/trivia.py
 - Pequeña mejora en la interfaz del juego por consola
+  **Tag:** `v1.0-day5`
+
+## Día 6 -
+
+- Pipeline CI/CD y pruebas de integracion
+  **Tag:** `v1.0-day6`
+
+## Día 7 -
+
+- Pruebas de seguridad con bandit
+  **Tag:** `v1.0-day7`
