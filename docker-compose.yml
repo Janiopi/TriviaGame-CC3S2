@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:15
+    container_name: trivia_game_db
+    restart: always
+    environment:
+      POSTGRES_DB: trivia_db
+      POSTGRES_USER: trivia_user
+      POSTGRES_PASSWORD: trivia_pass
+    ports:
+      - '5434:5432'
+    volumes:
+      # - trivia_data:/var/lib/postgresql/data
+      - ./app/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U trivia_user -d trivia_db']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+volumes:
+  trivia_data:
